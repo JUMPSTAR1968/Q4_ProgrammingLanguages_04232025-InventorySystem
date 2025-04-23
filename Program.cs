@@ -29,6 +29,7 @@ namespace InventorySystem
                 switch (input) //Handles different menu options
                 {
                     case "1":
+                        ViewInventory();
                         break;
 
                     case "2":
@@ -36,6 +37,7 @@ namespace InventorySystem
                         break;
                     
                     case "3":
+                        RemoveItem();
                         break; 
                     
                     case "4":
@@ -45,6 +47,16 @@ namespace InventorySystem
                     default:
                         break;
                 }
+            }
+            static void ViewInventory() 
+            { 
+                Console.Clear ();
+                for (int i = 0; i < inventory.Count; i++) //Loop through inventory items
+                { 
+                    Console.WriteLine($"{i+1}.{inventory[i]}");//Display each item with numbers
+                }
+                Console.WriteLine("Press Enter to continue...."); //Prompt to continue
+                Console.ReadLine(); //Wait for user input
             }
 
             static void AddItem()
@@ -56,6 +68,11 @@ namespace InventorySystem
                 Console.WriteLine($"'{item}' added to the inventory"); //confirm addition
                 Console.WriteLine("Press Enter to continue..."); //Prompt to continue
                 Console.ReadLine(); //Wait for user input
+            }
+
+            static void RemoveItem() 
+            { 
+                
             }
         }
     }
