@@ -71,8 +71,44 @@ namespace InventorySystem
             }
 
             static void RemoveItem() 
-            { 
-                
+            {
+                Console.Clear();
+
+                // Check if inventory is empty
+                if (inventory.Count == 0)
+                {
+                    Console.WriteLine("Your inventory is empty. Nothing to remove.");
+                    Console.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
+                    return;
+                }
+
+                // Display the inventory with indices
+                Console.WriteLine("Select an item to remove:");
+                for (int i = 0; i < inventory.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {inventory[i]}");
+                }
+
+                // Prompt the user for the index of the item to remove
+                Console.WriteLine("Enter the number of the item to remove: ");
+                string input = Console.ReadLine();
+
+                // Validate the input and remove the item if valid
+                if (int.TryParse(input, out int itemNumber) && itemNumber >= 1 && itemNumber <= inventory.Count)
+                {
+                    // Remove the item by its index (itemNumber - 1 since list is 0-indexed)
+                    string removedItem = inventory[itemNumber - 1];
+                    inventory.RemoveAt(itemNumber - 1);
+                    Console.WriteLine($"'{removedItem}' has been removed from the inventory.");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid selection. Please enter a valid number.");
+                }
+
+                Console.WriteLine("Press Enter to continue...");
+                Console.ReadLine();
             }
         }
     }
